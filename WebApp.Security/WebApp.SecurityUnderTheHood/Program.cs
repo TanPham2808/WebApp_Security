@@ -28,6 +28,13 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, HRManagerProbationRequirementHandler>();
 
+builder.Services.AddHttpClient("OurWebAPI", client =>
+{
+    //Ví dụ, nếu gửi một yêu cầu GET tới "api/values"
+    //bằng cách sử dụng HttpClient, yêu cầu sẽ được gửi tới "https://localhost:7005/api/values".
+    client.BaseAddress = new Uri("https://localhost:7005/");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

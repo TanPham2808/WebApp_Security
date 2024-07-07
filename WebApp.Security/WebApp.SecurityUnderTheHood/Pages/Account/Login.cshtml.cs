@@ -30,7 +30,7 @@ namespace WebApp.SecurityUnderTheHood.Pages.Account
                     new Claim("Department","HR"),
                     new Claim("Admin", "true"),
                     new Claim("Manager", "true"),
-                    new Claim("EmploymentDate", "2024-06-05")
+                    new Claim("EmploymentDate", "2024-01-05")
                 };
 
                 // Tạo một đối tượng ClaimsIdentity từ danh sách các claim và scheme xác thực.
