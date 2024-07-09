@@ -35,6 +35,16 @@ builder.Services.AddHttpClient("OurWebAPI", client =>
     client.BaseAddress = new Uri("https://localhost:7005/");
 });
 
+builder.Services.AddSession(options =>
+{
+    // Cookie chỉ có thể được truy cập qua HTTP và không thể bị truy cập bởi JavaScript giúp tăng cường bảo mật
+    options.Cookie.HttpOnly = true;
+    // Nếu không có hoạt động từ phía người dùng trong khoảng thời gian này, phiên làm việc sẽ hết hạn và dữ liệu phiên sẽ bị xóa.
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    // Cookie sẽ không bị ảnh hưởng bởi các tùy chọn đồng ý cookie của người dùng
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,6 +63,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseSession();
 app.MapRazorPages();
 
 app.Run();

@@ -21,7 +21,7 @@ namespace WebApp.SecurityUnderTheHood.Pages.Account
             if (!ModelState.IsValid) return Page();
 
             // Xác minh thông tin
-            if (Credential.UserName == "admin" && Credential.Password == "123")
+            if (Credential.UserName == "admin" && Credential.Password == "password")
             {
                 // Tạo danh sách các claim cho người dùng.
                 var claims = new List<Claim> {
@@ -51,35 +51,6 @@ namespace WebApp.SecurityUnderTheHood.Pages.Account
             }
 
             return Page();
-
-            //if (!ModelState.IsValid) return Page();
-
-            //// Verify the credential
-            //if (Credential.UserName == "admin" && Credential.Password == "password")
-            //{
-            //    // Creating the security context
-            //    var claims = new List<Claim> {
-            //        new Claim(ClaimTypes.Name, "admin"),
-            //        new Claim(ClaimTypes.Email, "admin@mywebsite.com"),
-            //        new Claim("Department", "HR"),
-            //        new Claim("Admin", "true"),
-            //        new Claim("Manager", "true"),
-            //        new Claim("EmploymentDate", "2023-01-01")
-            //    };
-            //    var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-            //    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-            //    var authProperties = new AuthenticationProperties
-            //    {
-            //        IsPersistent = Credential.RememberMe
-            //    };
-
-            //    await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal, authProperties);
-
-            //    return RedirectToPage("/Index");
-            //}
-
-            //return Page();
         }
     }
     public class Credential
